@@ -1,6 +1,7 @@
 package com.PremiershipPredictorGame.league;
 
-import com.PremiershipPredictorGame.leagueMember.LeagueMember;
+
+import com.PremiershipPredictorGame.user.User;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -13,42 +14,24 @@ import java.util.Set;
 public class League {
 
     @Id
-    @SequenceGenerator(
-            name = "league_sequence",
-            sequenceName = "league_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "league_sequence"
-    )
-
-    private Long leagueId;
-    @Column(
-            nullable = false
-    )
-
     private String leagueName;
     private String password;
 
-    @OneToMany(mappedBy = "league")
-    Set<LeagueMember> membership;
+    @ManyToMany
+    @JoinTable(
+            name = "league_member",
+            joinColumns = @JoinColumn(name="leagueName"),
+            inverseJoinColumns =  @JoinColumn(name = "username")
+    )
+    Set<User> leagueMembers;
 
-    public League( String leagueName, String password) {
+
+
+    public League(String leagueName, String password) {
 
         this.leagueName = leagueName;
         this.password = password;
     }
-
-    public Long getLeagueId() {
-        return leagueId;
-    }
-
-    public void setLeagueId(Long leagueId) {
-        this.leagueId = leagueId;
-    }
-
-
 
     public String getLeagueName() {
         return leagueName;
@@ -62,8 +45,14 @@ public class League {
         return password;
     }
 
-    public void setPassword(String inviteCode) {
-        this.password = inviteCode;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    public Set<User> getLeagueMembers() {
+        return leagueMembers;
     }
 
+    public void setLeagueMembers(Set<User> leagueMembers) {
+        this.leagueMembers = leagueMembers;
+    }
 }

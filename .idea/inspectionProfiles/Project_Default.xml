@@ -6,6 +6,13 @@
         <set>
           <option value="&quot;username&quot;" />
           <option value="&quot;password&quot;" />
+          <option value="header" />
+          <option value="headerValue" />
+          <option value="username" />
+          <option value="password" />
+          <option value="username " />
+          <option value="password " />
+          <option value="loginusername" />
         </set>
       </option>
     </inspection_tool>

@@ -3,7 +3,6 @@ package com.PremiershipPredictorGame.fixture;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.swing.event.ListDataEvent;
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -25,9 +24,9 @@ public class FixtureService {
         fixtureRepository.save(fixture);
     }
     @Transactional
-    public void updateOutcome(Long fixtureId, Integer outcome) {
+    public void updateOutcome(Long fixtureId, String winner) {
         Fixture fixture = fixtureRepository.getById(fixtureId);
-        fixture.setOutcome(outcome);
+        fixture.setWinner(winner);
     }
 
     public void deleteFixture(Long fixtureId) {
@@ -40,5 +39,18 @@ public class FixtureService {
     public List<Fixture> getFixturesByTeam(String team){
         List<Fixture> fixtures = fixtureRepository.findFixturesByTeam(team);
         return fixtures;
+    }
+
+    public Fixture getFixturesById(Long id) {
+        Fixture fixture = fixtureRepository.findById(id).orElseThrow(()
+                ->new IllegalStateException("fixture with id"+ id +"does not exist"));
+        return fixture;
+    }
+    @Transactional
+    public void lockWeeksFixtures(Integer week) {
+        List<Fixture> fixtures= fixtureRepository.findFixtureByWeek(week);
+        for(Fixture fixture:fixtures){
+            fixture.setWinner("locked");
+        }
     }
 }

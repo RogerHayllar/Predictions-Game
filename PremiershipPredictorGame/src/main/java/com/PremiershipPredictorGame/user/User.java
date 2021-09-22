@@ -1,36 +1,29 @@
 package com.PremiershipPredictorGame.user;
 
-import com.PremiershipPredictorGame.leagueMember.LeagueMember;
+import com.PremiershipPredictorGame.league.League;
+
 import com.PremiershipPredictorGame.userPrediction.UserPrediction;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import javassist.Loader;
+import jdk.dynalink.linker.support.SimpleLinkRequest;
 import lombok.*;
 
+
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Set;
 
 @Entity
 @Table(name="users")
 @NoArgsConstructor
 
+@Getter
+@Setter
+@EqualsAndHashCode
 public class User {
-    @Id
-    @SequenceGenerator(
-            name = "user_sequence",
-            sequenceName = "user_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "user_sequence"
-    )
-    @Getter
-    @Setter
-    private Long id;
-    @Column(
 
-            nullable = false,
-            columnDefinition = "TEXT",
-            unique = true
-    )
+    @Id
     private String username;
     @Column(
             name = "password",
@@ -38,41 +31,25 @@ public class User {
             columnDefinition = "TEXT"
     )
     private String password;
-    @Transient
+
     private Integer score;
-    @OneToMany(mappedBy = "user")
-    Set<LeagueMember> membership;
+
+    @ManyToMany(mappedBy = "leagueMembers")
+    @JsonIgnore
+    Set<League> leaguesJoined;
 
     @OneToMany(mappedBy = "user")
-    Set<UserPrediction> prediction;
+    @JsonIgnore
+    Set<UserPrediction> predictions;
 
     public User(String username, String password) {
-
         this.username = username;
         this.password = password;
+
+        this.score = 600;
+        this.leaguesJoined = Collections.EMPTY_SET;
+        this.predictions = Collections.EMPTY_SET;
     }
 
-    public String getUsername() {
-        return username;
-    }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Integer getScore() {
-        return score;
-    }
-
-    public void setScore(Integer score) {
-        this.score = score;
-    }
-}
+};

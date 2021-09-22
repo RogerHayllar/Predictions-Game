@@ -1,7 +1,10 @@
 package com.PremiershipPredictorGame.fixture;
 
+import com.PremiershipPredictorGame.user.User;
 import com.PremiershipPredictorGame.userPrediction.UserPrediction;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import lombok.extern.java.Log;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -12,64 +15,32 @@ import java.util.Set;
 
 public class Fixture {
 
-    public enum Team{
-        BAT("Bath Rugby"),
-        BRI("Bristol Bears"),
-        EXE("Exeter Chiefs"),
-        GLO("Gloucester Rugby"),
-        HAR("Harlequins"),
-        LEI("Leicester Rugby"),
-        LIR("London Irish"),
-        NEW("Newcastle Falcons"),
-        NOR("Northampton Saints"),
-        SAL("Sale Sharks"),
-        SAR("Saracens"),
-        WAS("Wasps"),
-        WOR("Worcester Warriors");
+//    public enum Team{
+//        BAT("Bath Rugby"),
+//        BRI("Bristol Bears"),
+//        EXE("Exeter Chiefs"),
+//        GLO("Gloucester Rugby"),
+//        HAR("Harlequins"),
+//        LEI("Leicester Rugby"),
+//        LIR("London Irish"),
+//        NEW("Newcastle Falcons"),
+//        NOR("Northampton Saints"),
+//        SAL("Sale Sharks"),
+//        SAR("Saracens"),
+//        WAS("Wasps"),
+//        WOR("Worcester Warriors");
+//
+//        public final String teamName;
+//
+//        Team(String teamName){
+//            this.teamName = teamName;
+//        }
+//
+//
+//
+//    }
 
-        public final String teamName;
 
-        private Team(String teamName){
-            this.teamName = teamName;
-        }
-
-
-
-    }
-
-    public Team getHomeTeam() {
-        return homeTeam;
-    }
-
-    public void setHomeTeam(Team homeTeam) {
-        this.homeTeam = homeTeam;
-    }
-
-    public Team getAwayTeam() {
-        return awayTeam;
-    }
-
-    public void setAwayTeam(Team awayTeam) {
-        this.awayTeam = awayTeam;
-    }
-
-    public Integer getOutcome() {
-        return outcome;
-    }
-
-    public void setOutcome(Integer outcome) {
-        this.outcome = outcome;
-    }
-
-    public Integer getWeek() {
-        return week;
-    }
-
-    public void setWeek(Integer week) {
-        this.week = week;
-    }
-    @Getter
-    @Setter
     @Id
     @SequenceGenerator(
             name = "fixture_sequence",
@@ -81,32 +52,79 @@ public class Fixture {
             generator = "fixture_sequence"
     )
 
-
-
-
     private Long fixtureId;
     @Column(
             nullable = false
     )
-    @Enumerated(EnumType.STRING)
-    private Team homeTeam;
+    @OneToMany(mappedBy = "fixture")
+    @JsonIgnore
+    private Set<UserPrediction> predictions;
+
+    private String homeTeam;
     @Column(
             nullable = false
     )
-    @Enumerated(EnumType.STRING)
-    private Team awayTeam;
-    private Integer outcome;
+    private String awayTeam;
+    private String winner;
     @Column(
             nullable = false
     )
     private Integer week;
-    @OneToMany(mappedBy = "fixture")
-    Set<UserPrediction> prediction;
 
-    public Fixture(Team homeTeam, Team awayTeam, Integer outcome, Integer week) {
+
+
+    public Fixture(String homeTeam, String awayTeam, Integer week) {
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
-        this.outcome = outcome;
         this.week = week;
+
+    }
+    public String getHomeTeam() {
+        return homeTeam;
+    }
+
+    public void setHomeTeam(String homeTeam) {
+        this.homeTeam = homeTeam;
+    }
+
+    public String getAwayTeam() {
+        return awayTeam;
+    }
+
+    public void setAwayTeam(String awayTeam) {
+        this.awayTeam = awayTeam;
+    }
+
+
+    public String getWinner() {
+        return winner;
+    }
+
+    public void setWinner(String winner) {
+        this.winner = winner;
+    }
+
+    public Integer getWeek() {
+        return week;
+    }
+
+    public void setWeek(Integer week) {
+        this.week = week;
+    }
+
+    public Long getFixtureId() {
+        return fixtureId;
+    }
+
+    public void setFixtureId(Long fixtureId) {
+        this.fixtureId = fixtureId;
+    }
+
+    public Set<UserPrediction> getPredictions() {
+        return predictions;
+    }
+
+    public void setPredictions(Set<UserPrediction> predictions) {
+        this.predictions = predictions;
     }
 }
