@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+
+/* base styles */
+* {
+  margin: 0;
+  font-family: 'Noto Sans', sans-serif;
+  color: #333;
+  
+}
+.wrapper{
+  background-color: #93d4e7;
+  
+}
+
+.navbar {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  max-width: 1000px;
+  margin: 0 auto;
+  border-bottom: 1px solid #f2f2f2;
+  background-color: #03232c;
+}
+.navbar h1 {
+  color: black
+}
+.navbar .links {
+  margin-left: auto;
+}
+.navbar a {
+  margin-left: 16px;
+  text-decoration: none;
+  padding: 6px;
+}
+.navbar a:hover {
+  color: hsla(150, 92%, 29%, 0.007);
+}
+.content {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.div {
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.login-wrapper {
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: left;
+}
+.login-wrapper label {
+  text-align: left;
+  display: block;
+}
+.login h2 {
+  font-size: 20px;
+  color: #f1356d;
+  margin-bottom: 30px;
+}
+.login-wrapper input,
+.login-wrapper textarea,
+.login select {
+  width: 100%;
+  padding: 6px 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  display: block;
+}
+.button {
+  background: #2b030f;
+  color: rgb(8, 1, 1);
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.register-wrapper {
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
+.register-wrapper label {
+  text-align: left;
+  display: block;
+}
+.register h2 {
+  font-size: 20px;
+  color: #8a465a;
+  margin-bottom: 30px;
+}
+.register-wrapper input,
+.register-wrapper textarea,
+.register select {
+  width: 100%;
+  padding: 6px 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  display: block;
+}
+.register button {
+  background: #f1356d;
+  color: #fff;
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.prediction-wrapper {
+  max-width: 600px;
+  margin-left: 100px;
+  align-items: center;
+  position: fixed;
+left: 700px;
+top: 100px;
+}
+.predictionsTable {
+   table-layout: fixed;
+}
+
+.predictionsTable th,
+.predictionsTable td {
+  align-items: center;
+  width: 300px;
+ 
+  padding: 10px 0;
+}
+
+
+
