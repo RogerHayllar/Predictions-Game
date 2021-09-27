@@ -4,7 +4,6 @@ import { useParams, Link } from "react-router-dom";
 const LeagueStandings = () => {
   const { leagueName } = useParams();
   const [standings, setStandings] = useState(null);
-  console.log(leagueName);
 
   const url =
     "http://localhost:8080/api/v1/league/" + leagueName + "/standings";
@@ -23,27 +22,30 @@ const LeagueStandings = () => {
   }, [url]);
 
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Username</th>
-          <th>Score</th>
-        </tr>
-      </thead>
-      <tbody>
-        {standings &&
-          standings.map((standing) => (
-            <tr key={standing.username}>
-              <td>
-                <Link to={`/viewPredictions/${standing.username}/${1}`}>
-                  {standing.username}
-                </Link>
-              </td>
-              <td>{standing.score}</td>
-            </tr>
-          ))}
-      </tbody>
-    </table>
+    <div className="centredWrapper">
+      <h2>Current Standings for {leagueName} </h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          {standings &&
+            standings.map((standing) => (
+              <tr key={standing.username}>
+                <td>
+                  <Link to={`/viewPredictions/${standing.username}/${1}`}>
+                    {standing.username}
+                  </Link>
+                </td>
+                <td>{standing.score}</td>
+              </tr>
+            ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 

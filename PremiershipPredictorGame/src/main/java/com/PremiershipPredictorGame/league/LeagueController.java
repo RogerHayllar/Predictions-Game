@@ -13,16 +13,16 @@ import java.util.List;
 @RequestMapping(path = "api/v1/league")
 public class LeagueController {
     private final LeagueService leagueService;
-    private final UserService userService;
 
     @Autowired
-    public LeagueController(LeagueService leagueService, UserService userService) {
+    public LeagueController(LeagueService leagueService) {
         this.leagueService = leagueService;
-        this.userService = userService;
     }
 
     @PostMapping(path = "/create/{leagueName}")
-    public void createNewLeague(@PathVariable("leagueName")String leagueName, @RequestParam("password")String password){
+    public void createNewLeague(@PathVariable("leagueName")String leagueName,
+                                @RequestParam("password")String password)
+    {
         leagueService.addNewLeague(leagueName, password);
     }
 
@@ -32,17 +32,16 @@ public class LeagueController {
         leagueService.updateLeaguePassword(leagueName, password);
     }
     @PutMapping(path = "join/{leagueName}/{username}")
-    public void addLeagueMember(@PathVariable("leagueName") String leagueName, @PathVariable("username") String username, @RequestParam String password){
+    public void addLeagueMember(@PathVariable("leagueName") String leagueName,
+                                @PathVariable("username") String username,
+                                @RequestParam String password){
         leagueService.addLeagueMember(leagueName, username, password);
-
-
     }
-    @CrossOrigin
+
     @GetMapping(path = "{leagueName}")
     public League getLeagueByName(@PathVariable("leagueName") String leagueName){
         return leagueService.getLeagueByName(leagueName);
     }
-    @CrossOrigin
     @GetMapping(path = "{leagueName}/standings")
     public List<LeagueStanding> getUsernameAndScoresOfLeague(@PathVariable("leagueName") String leagueName){
         return leagueService.getUsernameAndScoresOfLeague(leagueName);

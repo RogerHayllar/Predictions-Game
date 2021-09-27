@@ -121,11 +121,12 @@ const CreatePrediction = (props) => {
           </button>
           <input
             type="number"
+            min="0"
             required
             value={wager}
             onChange={(e) => setWager(Math.floor(e.target.value))}
           />
-          {predictedWinner && wager && (
+          {predictedWinner && wager > 0 && (
             <button onClick={handlePredictClick}>
               Wager {wager} points on a win for {predictedWinner}
             </button>

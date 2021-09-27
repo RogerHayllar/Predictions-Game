@@ -43,7 +43,7 @@ public class UserPredictionService {
         User user = userRepository.findByUsername(token.getUsername())
                 .orElseThrow(() -> new IllegalStateException("user does not exist"));
         if(!token.getPassword().equals(user.getPassword())){
-            throw new IllegalStateException("token not verified");
+            throw new IllegalStateException("incorrect password");
         }// need to authenticate the user
         if(user.getScore() < submittedPrediction.getWager()){
             throw new IllegalStateException("not enough points to wager");
@@ -145,6 +145,8 @@ public class UserPredictionService {
 
     public Boolean checkIfPredictionHasBeenMade(Long fixtureID, String username) {
         System.out.println("attempting");
+        User user = userRepository.findByUsername(username).
+                orElseThrow(() -> new IllegalStateException("User doesn't exist"));
         UserPrediction prediction = userPredictionRepository.findByUsernameAndFixtureId(username, fixtureID);
         if(prediction==null) {
             return false;

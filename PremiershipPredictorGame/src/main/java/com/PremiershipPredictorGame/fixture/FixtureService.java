@@ -47,10 +47,15 @@ public class FixtureService {
         return fixture;
     }
     @Transactional
-    public void lockWeeksFixtures(Integer week) {
-        List<Fixture> fixtures= fixtureRepository.findFixtureByWeek(week);
-        for(Fixture fixture:fixtures){
-            fixture.setWinner("locked");
+    public void lockWeeksFixtures(Integer week, String username, String password) {
+        if(username.equals("admin")&& password.equals("admin")) {
+            List<Fixture> fixtures = fixtureRepository.findFixtureByWeek(week);
+            for (Fixture fixture : fixtures) {
+                fixture.setWinner("locked");
+            }
+        }
+        else{
+            throw new IllegalStateException("admin not verified");
         }
     }
 }

@@ -61,7 +61,8 @@ public class LeagueService {
     }
 
     public League getLeagueByName(String leagueName) {
-        return leagueRepository.findLeagueByLeagueName(leagueName).orElseThrow(() -> new IllegalStateException("league with name" + leagueName + "not found"));
+        return leagueRepository.findLeagueByLeagueName(leagueName)
+                .orElseThrow(() -> new IllegalStateException("league with name" + leagueName + "not found"));
     }
 
     public List<LeagueStanding> getUsernameAndScoresOfLeague(String leagueName) {

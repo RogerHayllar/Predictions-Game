@@ -46,10 +46,11 @@ const Fixtures = (props) => {
     // At the prediction deadline, the winner of all of week's games will be set to a placeholder value (locked), so if the winner value is null, the user can make a prediction
     return (
       <div className="fixtureWrapper">
-        <button onClick={handleClickPreviousWeek}>Previous week</button>
-        <button onClick={handleClickNextWeek}>Next week</button>
-
-        <h4>Fixtures, week {week}</h4>
+        <div>
+          <button onClick={handleClickPreviousWeek}>Previous week</button>
+          <button onClick={handleClickNextWeek}>Next week</button>
+        </div>
+        <h4>Fixtures for week {week}</h4>
         {fixtures &&
           fixtures.map((fixture) => (
             <div key={fixture.fixtureId}>
@@ -63,8 +64,10 @@ const Fixtures = (props) => {
   if (fixtures && fixtures[0].winner === "locked") {
     return (
       <div className="fixtureWrapper">
-        <button onClick={handleClickPreviousWeek}>Previous week</button>
-        <button onClick={handleClickNextWeek}>Next week</button>
+        <div>
+          <button onClick={handleClickPreviousWeek}>Previous week</button>
+          <button onClick={handleClickNextWeek}>Next week</button>
+        </div>
         <h4>Fixtures, week {week}</h4>
         <p>Prediction deadline has passed, games are underway</p>
         {fixtures &&
@@ -79,8 +82,10 @@ const Fixtures = (props) => {
   if (fixtures && fixtures[0] && fixtures[0].winner !== "locked") {
     return (
       <div className="fixtureWrapper">
-        <button onClick={handleClickPreviousWeek}>Previous week</button>
-        <button onClick={handleClickNextWeek}>Next week</button>
+        <div>
+          <button onClick={handleClickPreviousWeek}>Previous week</button>
+          <button onClick={handleClickNextWeek}>Next week</button>
+        </div>
         <h4>Results, week {week}</h4>
 
         {fixtures &&

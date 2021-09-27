@@ -17,23 +17,18 @@ public class FixtureController {
     public List<Fixture> getFixturesByWeek(@PathVariable("week") Integer week){
          return fixtureService.getFixturesByWeek(week);
     }
-    @PostMapping(path = "/admin/create")
-    public void addNewFixture(@RequestBody Fixture fixture){
-        fixtureService.addNewFixture(fixture);
-    }
+
     @PutMapping(path="/admin/updateScore/{fixtureId}")
     public void updateOutcome(@PathVariable("fixtureId") Long fixtureId,
                               @RequestParam("winner") String winner){
         fixtureService.updateOutcome(fixtureId, winner);
     }
-    @DeleteMapping(path="/admin/{fixtureId}")
-    public void deleteFixture(@PathVariable("fixtureId") Long fixtureId){
-        fixtureService.deleteFixture(fixtureId);
 
-    }
     @PutMapping(path="/lock/{week}")
-    public void lockWeeksFixtures(@PathVariable("week") Integer week){
-        fixtureService.lockWeeksFixtures(week);
+    public void lockWeeksFixtures(@PathVariable("week") Integer week,
+                                  @RequestHeader(value = "username")String username,
+                                  @RequestHeader(value = "password")String password){
+        fixtureService.lockWeeksFixtures(week, username, password);
 
     }
     @GetMapping(path ="/team")

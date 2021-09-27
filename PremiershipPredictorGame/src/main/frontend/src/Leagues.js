@@ -15,14 +15,17 @@ const Leagues = ({ token }) => {
       });
   }, [username]);
   return (
-    <div className="leagues-Wrapper">
+    <div className="centredWrapper">
       <div className={"LeagueList"}>
         <h2>Your Leagues</h2>
 
         {leagues &&
           leagues.map((league) => (
             <div key={league}>
-              <Link to={`/standings/${league}`}>{league}</Link>
+              <Link to={`/standings/${league.leagueName}`}>
+                {league.leagueName}
+              </Link>
+              <p>Password is {league.password}</p>
             </div>
           ))}
       </div>

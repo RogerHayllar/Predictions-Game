@@ -62,25 +62,14 @@ public class UserService {
     }
 
 
-//    @Transactional
-//    public void updateUserScore(String username, Integer week) {
-//        User user = userRepository.findByUsername(username).orElseThrow(()->new IllegalStateException("User with username"+username+"does not exist"));
-//        List<Long> fixtureIds = fixtureRepository.findIdsByWeek(week);
-//        List<UserPrediction> predictions = userPredictionRepository.findByUserAndId(user, fixtureIds);
-//        int score = user.getScore().intValue();
-//        for(UserPrediction prediction: predictions){
-//            score += prediction.getAwardedScore();
-//        }
-//        Integer scoreFinal = Integer.valueOf(score);
-//        user.setScore(scoreFinal);
-//    }
 
-    public List<String> getLeaguesByUsername(String username) {
+
+    public List<League> getLeaguesByUsername(String username) {
         User user = userRepository.findByUsername(username).
                 orElseThrow(()->new IllegalStateException("User with username"+username+"does not exist"));
-        List<String> leagues = new ArrayList<>();
+        List<League> leagues = new ArrayList<>();
         for(League league: user.getLeaguesJoined()){
-            leagues.add(league.getLeagueName());
+            leagues.add(league);
         }
         return leagues;
     }
@@ -116,6 +105,9 @@ public class UserService {
             for(User user: users){
                 user.setScore(user.getScore()+300);
             }
+        }
+        else {
+            throw new IllegalStateException("admin details not verified");
         }
     }
 }

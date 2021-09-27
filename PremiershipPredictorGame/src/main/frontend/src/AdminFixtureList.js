@@ -8,20 +8,6 @@ const AdminFixtureList = (props) => {
 
   useEffect(() => {
     console.log("use run");
-    // fetch("http://localhost:8080/api/v1/user/verifyAdmin", {
-    //   method: "GET",
-    //   headers: {
-    //     username: token.username,
-    //     password: token.password,
-    //   },
-    // })
-    //   .then((res) => {
-    //     return res.json();
-    //   })
-    //   .then((data) => {
-    //     setAdminAuth(data);
-    //     console.log(adminAuth);
-    //   });
 
     fetch("http://localhost:8080/api/v1/fixture/week/" + week)
       .then((res) => {
@@ -82,7 +68,7 @@ const AdminFixtureList = (props) => {
   return (
     fixtures && (
       <div className="fixture-Wrapper">
-        <button onClick={handleClickPreviousWeek}>last</button>
+        <button onClick={handleClickPreviousWeek}>Last week</button>
         <button onClick={handleClickNextWeek}>Next week</button>
 
         <h4>Fixtures, week {week}</h4>

@@ -14,6 +14,7 @@ import JoinLeague from "./JoinLeague";
 import CreateLeague from "./CreateLeague";
 import AdminFixtureList from "./AdminFixtureList";
 import AdminUpdateOutcome from "./AdminUpdateOutcome";
+import HowToPlay from "./HowToPlay";
 function App() {
   const [token, setToken] = useState();
   if (!token) {
@@ -26,7 +27,6 @@ function App() {
   }
   return (
     <div className="wrapper">
-      <p>home</p>
       <Router>
         <Navbar token={token} />
         <Switch>
@@ -59,6 +59,9 @@ function App() {
           </Route>
           <Route exact path="/admin/fixtures">
             <AdminFixtureList token={token} />
+          </Route>
+          <Route exact path="/HowToPlay">
+            <HowToPlay token={token} />
           </Route>
         </Switch>
       </Router>

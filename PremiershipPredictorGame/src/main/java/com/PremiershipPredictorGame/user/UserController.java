@@ -18,18 +18,13 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping
-    public List<User> getUsers(){
-        return userService.getUsers();
-    }
+//    @GetMapping
+//    public List<User> getUsers(){
+//        return userService.getUsers();
+//    }
     @GetMapping(path = "/{username}/score")
-    public Integer getScoreByUsername(@PathVariable("username") String username){
+    public Integer getScoreByUsername(@PathVariable("username") String username) {
         return userService.getScoreByUsername(username);
-
-    }
-    @PostMapping
-    public void registerNewUser(@RequestBody User user) {
-        userService.addNewUser(user);
     }
 
 
@@ -39,10 +34,7 @@ public class UserController {
         userService.updateUserPassword(username, passwordNew, passwordOld);
     }
 
-    @GetMapping(path = "{username}")
-    public User getUserByUsername(@PathVariable("username") String username){
-        return userService.getUserByUsername(username);
-    }
+
 
     @GetMapping(path = "/verifyAdmin")
     public Boolean verifyAdmin(@RequestHeader(value = "username")String username,
@@ -51,7 +43,7 @@ public class UserController {
     }
 
     @GetMapping(path = "{username}/leagues")
-    public List<String> getLeaguesByUsername(@PathVariable("username") String username){
+    public List<League> getLeaguesByUsername(@PathVariable("username") String username){
         return userService.getLeaguesByUsername(username);
     }
     @PostMapping(path = "/admin/add50points")

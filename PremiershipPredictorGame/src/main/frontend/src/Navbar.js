@@ -10,6 +10,7 @@ const Navbar = (props) => {
         <Link to={`/viewpredictions/${props.token.username}/1`}>
           Your Predictions
         </Link>
+        <Link to="/HowToPlay">How to Play</Link>
       </div>
     </nav>
   );

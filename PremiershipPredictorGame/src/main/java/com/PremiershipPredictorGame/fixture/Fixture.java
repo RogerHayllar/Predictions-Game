@@ -15,30 +15,6 @@ import java.util.Set;
 
 public class Fixture {
 
-//    public enum Team{
-//        BAT("Bath Rugby"),
-//        BRI("Bristol Bears"),
-//        EXE("Exeter Chiefs"),
-//        GLO("Gloucester Rugby"),
-//        HAR("Harlequins"),
-//        LEI("Leicester Rugby"),
-//        LIR("London Irish"),
-//        NEW("Newcastle Falcons"),
-//        NOR("Northampton Saints"),
-//        SAL("Sale Sharks"),
-//        SAR("Saracens"),
-//        WAS("Wasps"),
-//        WOR("Worcester Warriors");
-//
-//        public final String teamName;
-//
-//        Team(String teamName){
-//            this.teamName = teamName;
-//        }
-//
-//
-//
-//    }
 
 
     @Id

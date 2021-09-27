@@ -42,6 +42,7 @@ const AdminUpdateOutcome = (props) => {
         <button onClick={() => setWinner(fixture.awayTeam)}>
           {fixture.awayTeam}
         </button>
+        <button onClick={() => setWinner("DRAW")}>{"Draw"}</button>
         {winner && (
           <button onClick={handleClick}>update winner to {winner}</button>
         )}

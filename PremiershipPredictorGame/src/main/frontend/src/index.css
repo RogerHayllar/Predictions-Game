@@ -7,10 +7,24 @@
   color: #333;
   
 }
-.wrapper{
-  background-color: #93d4e7;
+.fixtureWrapper {
+ display: grid;
+ justify-content: center;
+ align-items: center;
+ grid-gap: 5px;
+  }
+.centredWrapper {
+ display: grid;
+ justify-content: center;
+ align-items: center;
+ grid-gap: 5px;
+  }
   
+.HowToPlayWrapper{
+  max-width: 900px;
+  margin: auto
 }
+
 
 .navbar {
   padding: 20px;
@@ -19,7 +33,6 @@
   max-width: 1000px;
   margin: 0 auto;
   border-bottom: 1px solid #f2f2f2;
-  background-color: #03232c;
 }
 .navbar h1 {
   color: black
@@ -32,11 +45,9 @@
   text-decoration: none;
   padding: 6px;
 }
-.navbar a:hover {
-  color: hsla(150, 92%, 29%, 0.007);
-}
+
 .content {
-  max-width: 600px;
+  max-width: 6000px;
   margin: 40px auto;
   padding: 20px;
 }
@@ -127,7 +138,7 @@ top: 100px;
 .predictionsTable td {
   align-items: center;
   width: 300px;
- 
+
   padding: 10px 0;
 }
 
