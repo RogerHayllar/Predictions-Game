@@ -1,4 +1,4 @@
-import React, from "react";
+import React from "react";
 const HowToPlay = () => {
   return (
     <div className="HowToPlayWrapper">
